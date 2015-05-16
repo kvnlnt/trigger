@@ -5,6 +5,7 @@ var Trigger = function(options) {
     this.wrapper = options.fretboard || '#fretboard';
     this.wrapper = document.querySelector(this.wrapper);
     this.fretboard = new Fretboard();
+    this.player = new Player();
 
     // init
     this.init();
