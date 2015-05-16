@@ -7,3 +7,11 @@
     stroke:#e2e2e2;
     stroke-width:2px;
 }
+
+.note {
+    cursor: pointer;
+}
+
+.label {
+    fill:#FFFFFF;
+}

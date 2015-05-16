@@ -110,6 +110,41 @@ var Fret = function(options){
 
 };
 
+var Label = function(options){
+
+    var options = options || {};
+    this.num = options.num || {};
+    this.x = options.x || {};
+    this.y = options.y || {};
+    this.text = options.text || {};
+    this.label = new Svg({ tag: 'text', attrs: {
+        x: this.x,
+        y: this.y,
+        class: 'label label' + (parseInt(this.num) + 1)
+    }});
+
+    return this.init();
+
+};
+
+Label.prototype = {
+
+    init:function(){
+        this.render();
+        return this;
+    },
+
+    el: function(){
+        return this.label;
+    },
+
+    render: function(){
+        this.label.innerHTML = this.text;
+        return this;
+    }
+
+};
+
 Fret.prototype = {
 
     init: function(){
@@ -121,11 +156,11 @@ Fret.prototype = {
         return this.fret;
     },
 
-    render: function(fret, y) {
+    render: function() {
 
         // bar
         var bar = new Svg({tag: 'line', attrs:{
-            x1:0, x2: this.width, y1: this.height, y2: this.height, class:'bar'
+            x1:0, x2: this.width, y1: this.height, y2: this.height, class:'bar bar'+this.num
         }});
 
         this.fret.appendChild(bar);
@@ -143,6 +178,14 @@ Fret.prototype = {
         for (var t in this.tuning) {
             var note = new Note({ x: x, y: this.height/2, r: this.spread/4, num: t });
             this.fret.appendChild(note.el());
+            x += this.spread;
+        }
+
+        // label  
+        var x = this.spread / 2;
+        for (var t in this.tuning) {
+            var label = new Label({ x: x, y: this.height/2, text: this.tuning[t], num: t });
+            this.fret.appendChild(label.el());
             x += this.spread;
         }
 
