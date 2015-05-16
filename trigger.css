@@ -12,6 +12,17 @@
     cursor: pointer;
 }
 
+.note:hover {
+    fill:#FF0000;
+}
+
 .label {
     fill:#FFFFFF;
+}
+
+.label-note {
+    text-anchor: middle;
+    alignment-baseline: middle;
+    font-size: 10px;
+    pointer-events:none;
 }
