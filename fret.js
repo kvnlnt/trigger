@@ -62,7 +62,7 @@ Fret.prototype = {
         var x = this.spread / 2;
         for (var t in this.tuning) {
             var pitch = Musicalc.getNoteByDegreesFromNote(this.tuning[t], this.num);
-            var label = new Label({ x: x, y: this.height/2, text: pitch.pitchClass, num: t, klass:'note' });
+            var label = new Label({ x: x, y: this.height/2, text: pitch.pitch, num: t, klass:'note' });
             this.fret.appendChild(label.el());
             x += this.spread;
         }
