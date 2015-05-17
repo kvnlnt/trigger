@@ -11,7 +11,7 @@ var Fret = function(options){
     this.fret = new Svg({
         tag:'g', 
         attrs: {
-            transform: 'translate(0,' + this.y + ')',
+            transform: 'translate(' + this.x + ',' + this.y + ')',
             class: "fret fret" + this.num
         }
     });
@@ -35,14 +35,19 @@ Fret.prototype = {
     render: function() {
 
         // bar
+        var x = this.spread / 2;
         var bar = new Svg({tag: 'line', attrs:{
-            x1:0, x2: this.width, y1: this.height, y2: this.height, class:'bar bar'+this.num
+            x1:x, x2: this.width - x, y1: this.height, y2: this.height, class:'bar bar'+this.num
         }});
 
         this.fret.appendChild(bar);
 
-        // strings  
-        var x = this.spread / 2;
+        // label 
+        var label = new Label({ x: 0, y: this.height/2, text: this.num, num: this.num, klass:'fret' });
+        this.fret.appendChild(label.el());
+
+        // strings 
+        var x = this.spread / 2;    
         for (var t in this.tuning) {
             var string = new String({ x1:x, x2:x, y1:0, y2: this.height, num:t });
             this.fret.appendChild(string.el());
@@ -53,16 +58,16 @@ Fret.prototype = {
         var x = this.spread / 2;
         for (var t in this.tuning) {
             var pitch = Musicalc.getNoteByDegreesFromNote(this.tuning[t], this.num);
-            var note = new Note({ x: x, y: this.height/2, r: this.spread/4, num: t, pitch:pitch.pitch });
+            var note = new Note({ x: x, y: this.height/2, r: this.spread/3, num: t, pitch:pitch.pitch });
             this.fret.appendChild(note.el());
             x += this.spread;
         }
 
-        // label  
+        // note labels  
         var x = this.spread / 2;
         for (var t in this.tuning) {
             var pitch = Musicalc.getNoteByDegreesFromNote(this.tuning[t], this.num);
-            var label = new Label({ x: x, y: this.height/2, text: pitch.pitch, num: t, klass:'note' });
+            var label = new Label({ x: x, y: this.height/2, text: pitch.note.split('/')[0], num: t, klass:'note' });
             this.fret.appendChild(label.el());
             x += this.spread;
         }

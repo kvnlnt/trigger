@@ -4,10 +4,11 @@ var Fretboard = function(options) {
     var options = options || {};
     this.frets = options.frets || 24;
     this.fretHeight = 50;
-    this.width = options.width || 300;
+    this.width = options.width || 320;
+    this.labelOffset = options.labelOffset || 20;
     this.height = this.frets * this.fretHeight;
     this.tuning = options.strings || ['e2', 'a2', 'd3', 'g3', 'b3', 'e4'];
-    this.spread = this.width / this.tuning.length;
+    this.spread = (this.width-this.labelOffset) / this.tuning.length;
     this.board = new Svg({attrs:{ height: this.height, width:this.width}});
 
     // init
@@ -30,16 +31,16 @@ Fretboard.prototype = {
 
         // frets
         var y = 0;
-        for (var fret = 0; fret < this.frets; fret++) {
-            var _fret = new Fret({ 
-                x: 0, 
+        for (var f = 0; f < this.frets; f++) {
+            var fret = new Fret({ 
+                x: this.labelOffset, 
                 y: y, 
                 height:this.fretHeight, 
-                width:this.width,
-                num: fret, 
+                width:this.width-this.labelOffset,
+                num: f, 
                 tuning: this.tuning, 
                 spread:this.spread });
-            this.board.appendChild(_fret.el());
+            this.board.appendChild(fret.el());
             y += this.fretHeight;
         }
 

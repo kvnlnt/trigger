@@ -1,15 +1,15 @@
 var Label = function(options){
 
     var options = options || {};
-    this.num = options.num || {};
-    this.x = options.x || {};
-    this.y = options.y || {};
-    this.text = options.text || {};
+    this.num = options.num.toString() || '';
+    this.x = options.x || 0;
+    this.y = options.y || 0;
+    this.text = options.text.toString() || '';
     this.klass = options.klass || 'label';
     this.label = new Svg({ tag: 'text', attrs: {
         x: this.x,
         y: this.y,
-        class: 'label label-' + this.klass + ' ' + this.klass + (parseInt(this.num) + 1)
+        class: 'label label-' + this.klass + ' ' + this.klass + this.num
     }});
 
     return this.init();

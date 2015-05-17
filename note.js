@@ -33,7 +33,6 @@ Note.prototype = {
 
         var that = this;
         this.note.addEventListener('click', function(){
-            console.log(that.pitch);
             trigger.player.play(that.pitch);
         });
 
