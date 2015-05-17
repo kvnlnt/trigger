@@ -19,10 +19,9 @@ var Musicalc = {
         var pitchClass = note.substr(0, note.length - 1);
         var rootIndex = Musicalc.notation.indexOf(pitchClass);
         var index = rootIndex + degrees;
-        var notationMultiplier = Math.ceil((rootIndex + degrees)/12);
-        var scaledNotation = this._scaleNotation(notationMultiplier);
-        var octaveMultiplier = Math.floor((rootIndex + degrees)/12);
-        var octaveScaled = octaveMultiplier >= 1 ? octave + octaveMultiplier : octave;
+        var multiplier = Math.floor((rootIndex + degrees)/12);
+        var scaledNotation = this._scaleNotation(multiplier);
+        var octaveScaled = multiplier >= 1 ? octave + multiplier : octave;
 
         return {
             note:scaledNotation[index],
