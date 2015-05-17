@@ -2,6 +2,12 @@ var Musicalc = {
     
     notation: ['c','c#/db','d','d#/eb','e','f','f#/gb','g','g#/ab','a','a#/bb','b'],
 
+    // half steps
+    formulas: {
+        major:[0,4,7],
+        minor:[0,3,7]
+    },
+
     _scaleNotation: function(multiplier){
 
         var notation = Musicalc.notation.slice();
@@ -10,6 +16,23 @@ var Musicalc = {
             scaledNotation.push.apply(scaledNotation, notation);
         }
         return scaledNotation;
+
+    },
+
+    getChordNotes:function(root, type){
+
+        var scaledNotation = this._scaleNotation(1);
+        var index = Musicalc.notation.indexOf(root);
+        var notes = [];
+        var formula = Musicalc.formulas[type];
+
+        for(var i = 0; i < formula.length; i++){
+            var noteIndex = index + (formula[i]);
+            var note = scaledNotation[noteIndex];
+            notes.push(note);
+        }
+
+        return notes;
 
     },
 

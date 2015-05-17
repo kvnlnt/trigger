@@ -1,7 +1,7 @@
 var Player = function(options){
 
     var options = options || {};
-    this.sample = options.sample || 'gtr_aco_steel.mp3';
+    this.sample = options.sample || '../samples/gtr_aco_steel.mp3';
     this.sampleLength = options.sampleLength || 2000;
 
     return this.init();
