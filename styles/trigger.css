@@ -20,11 +20,21 @@ html, body {
 
 .note {
     cursor: pointer;
+    stroke-width:2;
+}
+
+.note.disabled {
+    fill:#e2e2e2;
+    stroke:#e2e2e2;
 }
 
 .fret0 .note {
     fill:#FFFFFF;
     stroke:#000000;
+}
+
+.fret0 .note.disabled {
+    stroke:#e2e2e2;
 }
 
 .note:hover {
@@ -56,3 +66,9 @@ html, body {
 .fret0 .label-note {
     fill:#000000;
 }
+
+.fret0 .label-note.disabled {
+    fill:#CCCCCC;
+}
+
+

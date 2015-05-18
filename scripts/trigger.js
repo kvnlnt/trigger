@@ -19,6 +19,7 @@ Trigger.prototype = {
 
     init: function() {
         this.render();
+        this.picker.broadcast();
         return this;
     },
 

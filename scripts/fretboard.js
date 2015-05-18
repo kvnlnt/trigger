@@ -28,14 +28,41 @@ Fretboard.prototype = {
         return this.board;
     },
 
+    filterFretsByNotes:function(filter){
+        var notes = document.querySelectorAll('circle.note');
+        var labels = document.querySelectorAll('text.label-note');
+        for(var n = 0; n < notes.length; n++){
+            var note = notes.item(n);
+            var label = labels.item(n);
+            var pitchClass = note.getAttribute('pitch-class');
+            var noteInFilter = filter.indexOf(pitchClass) >= 0;
+            var noteClasses = note.getAttribute('class').split(' ');
+            var labelClasses = label.getAttribute('class').split(' ');
+            var isDisabled = noteClasses.indexOf('disabled') >= 0;
+            if(isDisabled) {
+                noteClasses.splice(noteClasses.indexOf('disabled'), 1);
+                labelClasses.splice(labelClasses.indexOf('disabled'), 1);
+            }
+            if(!noteInFilter) {
+                noteClasses.push('disabled');
+                labelClasses.push('disabled');
+            }
+            var noteClassString = noteClasses.join(' ');
+            var labelClassString = labelClasses.join(' ');
+            note.setAttribute('class', noteClassString);
+            label.setAttribute('class', labelClassString);
+        }
+    },
+
     registerListeners: function(){
 
+        var that = this;
         document.body.addEventListener(Events.rootChanged, function(e){
-            console.log('root changed', e.detail);
+            that.filterFretsByNotes(e.detail.notes);
         });
 
         document.body.addEventListener(Events.typeChanged, function(e){
-            console.log('type changed', e.detail);
+            that.filterFretsByNotes(e.detail.notes);
         });
 
     },

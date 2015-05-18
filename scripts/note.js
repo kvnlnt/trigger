@@ -3,6 +3,7 @@ var Note = function(options){
     var options = options || {};
     this.num = options.num || {};
     this.pitch = options.pitch || {};
+    this.pitchClass = options.pitchClass || {};
     this.x = options.x || {};
     this.y = options.y || {};
     this.r = options.r || 25;
@@ -10,7 +11,8 @@ var Note = function(options){
         cx: this.x,
         cy: this.y,
         r: this.r,
-        class: 'note note' + (parseInt(this.num) + 1)
+        class: 'note note' + (parseInt(this.num) + 1),
+        'pitch-class': this.pitchClass
     }});
 
     this.init();

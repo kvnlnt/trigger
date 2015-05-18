@@ -17,12 +17,19 @@ Picker.prototype = {
     init: function() {
 
         this.render().registerEvents();
+        this.broadcast();
         return this;
 
     },
 
     el: function() {
         return this.picker;
+    },
+
+    broadcast: function(){
+        var notes = Musicalc.getChordNotes(this.root, this.type);
+        var rootChanged = new CustomEvent(Events.rootChanged, { detail: { notes: notes }});
+        document.body.dispatchEvent(rootChanged);
     },
 
     registerEvents: function() {
@@ -32,17 +39,13 @@ Picker.prototype = {
         // root changed
         this.picker.querySelector('#pickRoot').addEventListener('change', function(e) {
             that.root = this.value;
-            var notes = Musicalc.getChordNotes(that.root, that.type);
-            var rootChanged = new CustomEvent(Events.rootChanged, { detail: { notes: notes }});
-            document.body.dispatchEvent(rootChanged);
+            that.broadcast();
         });
 
         // type changed
         this.picker.querySelector('#pickType').addEventListener('change', function(e) {
             that.type = this.value;
-            var notes = Musicalc.getChordNotes(that.root, that.type);
-            var typeChanged = new CustomEvent(Events.typeChanged, { detail: { notes: notes }});
-            document.body.dispatchEvent(typeChanged);
+            that.broadcast();
         });
 
     },
