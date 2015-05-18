@@ -26,6 +26,7 @@ html, body {
 .note.disabled {
     fill:#e2e2e2;
     stroke:#e2e2e2;
+    display:none;
 }
 
 .fret0 .note {
@@ -67,8 +68,10 @@ html, body {
     fill:#000000;
 }
 
-.fret0 .label-note.disabled {
+.fret0 .label-note.disabled,
+.label-note.disabled {
     fill:#CCCCCC;
+    display:none;
 }
 
 
