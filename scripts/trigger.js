@@ -7,8 +7,11 @@ var Trigger = function(options) {
     this.fretboard = new Fretboard();
     this.pickerWrapper = options.picker || '#pickerWrapper';
     this.pickerWrapper = document.querySelector(this.pickerWrapper);
+    this.statsWrapper = options.stats || '#statsWrapper';
+    this.statsWrapper = document.querySelector(this.statsWrapper);
     this.picker = new Picker();
     this.player = new Player();
+    this.stats = new Stats();
 
     // init
     this.init();
@@ -26,6 +29,7 @@ Trigger.prototype = {
     render:function(){
         this.pickerWrapper.appendChild(this.picker.el());
         this.fretboardWrapper.appendChild(this.fretboard.el());
+        this.statsWrapper.appendChild(this.stats.el());
         return this;
     }
 
