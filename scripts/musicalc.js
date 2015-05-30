@@ -1,6 +1,6 @@
 var Musicalc = {
-    
-    notation: ['c','c#/db','d','d#/eb','e','f','f#/gb','g','g#/ab','a','a#/bb','b'],
+
+    notation: ['c', 'c#/db', 'd', 'd#/eb', 'e', 'f', 'f#/gb', 'g', 'g#/ab', 'a', 'a#/bb', 'b'],
 
     scale_formulas: {
         major: [
@@ -29,12 +29,12 @@ var Musicalc = {
         major:[
             { num:0, interval: 'I' },
             { num:4, interval:'III' },
-            { num:7, interval: 'IV'}
+            { num:7, interval: 'V'}
         ],
         minor:[
             { num:0, interval: 'I' },
             { num:3, interval: 'bIII' },
-            { num:7, interval: 'IV'} 
+            { num:7, interval: 'V'} 
         ]
     },
 
@@ -66,7 +66,7 @@ var Musicalc = {
 
     },
 
-    getScaleFormula:function(root, type){
+    getScaleNotes:function(root, type){
 
         var type = type.indexOf('major') > -1 ? 'major' : 'minor';
         var scaledNotation = this._scaleNotation(1);

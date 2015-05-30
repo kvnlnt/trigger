@@ -7,7 +7,7 @@ var Fretboard = function(options) {
     this.width = options.width || 320;
     this.labelOffset = options.labelOffset || 20;
     this.height = this.frets * this.fretHeight;
-    this.tuning = options.strings || ['e2', 'a2', 'd3', 'g3', 'b3', 'e4'];
+    this.tuning = options.tuning || ['e2', 'a2', 'd3', 'g3', 'b3', 'e4'];
     this.spread = (this.width-this.labelOffset) / this.tuning.length;
     this.board = new Svg({attrs:{ id:'fretboard', height: this.height, width:this.width}});
 

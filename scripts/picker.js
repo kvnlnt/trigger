@@ -29,12 +29,12 @@ Picker.prototype = {
     broadcast: function(){
         var notes = Musicalc.getChordNotes(this.root, this.type);
         var chord_formula = Musicalc.getChordFormula(this.root, this.type);
-        var scale_formula = Musicalc.getScaleFormula(this.root, this.type);
+        var scale_notes = Musicalc.getScaleNotes(this.root, this.type);
         var rootChanged = new CustomEvent(Events.rootChanged, { 
             detail: { 
                 notes: notes, 
                 chord_formula:chord_formula,
-                scale_formula: scale_formula
+                scale_notes: scale_notes
             }
         });
         document.body.dispatchEvent(rootChanged);

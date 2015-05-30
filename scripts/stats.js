@@ -41,13 +41,9 @@ Stats.prototype = {
         var data = data || {};
         data.notes = data.notes || '';
         data.chord_formula = data.chord_formula || '';
-        data.scale_formula = data.scale_formula || '';
-        console.log(data.chord_formula, data.scale_formula);
-        var html = 'notes: ' + data.notes.toString();
+        var html = 'Notes: ' + Util.formatNotes(data.notes).toString();
         html += '<br/>';
-        html += 'formula: ' + data.chord_formula.toString();
-        html += '<br/>';
-        html += 'scale: ' + data.scale_formula.toString();
+        html += 'Formula: ' + data.chord_formula.toString();
 
         this.stats.innerHTML = html;
         return this;
