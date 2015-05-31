@@ -58,7 +58,8 @@ Fretboard.prototype = {
 
         var that = this;
         document.body.addEventListener(Events.rootChanged, function(e){
-            that.filterFretsByNotes(e.detail.notes);
+            var notes = Musicalc.getChordNotes(e.detail.root, e.detail.type);
+            that.filterFretsByNotes(notes);
         });
 
         document.body.addEventListener(Events.typeChanged, function(e){

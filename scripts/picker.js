@@ -27,14 +27,10 @@ Picker.prototype = {
     },
 
     broadcast: function(){
-        var notes = Musicalc.getChordNotes(this.root, this.type);
-        var chord_formula = Musicalc.getChordFormula(this.root, this.type);
-        var scale_notes = Musicalc.getScaleNotes(this.root, this.type);
         var rootChanged = new CustomEvent(Events.rootChanged, { 
             detail: { 
-                notes: notes, 
-                chord_formula:chord_formula,
-                scale_notes: scale_notes
+                root:this.root,
+                type:this.type
             }
         });
         document.body.dispatchEvent(rootChanged);
@@ -61,24 +57,30 @@ Picker.prototype = {
     render: function() {
 
         var html = '\
+        <div class="row"> \
+        <div class="col pad5"> \
         <select name="root" id="pickRoot"> \
             <option value="c">C</option> \
-            <option value="c#/db">C&#9839;/D&#9837;</option> \
+            <option value="c#/db">C#/Db</option> \
             <option value="d">D</option> \
-            <option value="d#/eb">D&#9839;/E&#9837;</option> \
+            <option value="d#/eb">D#/Eb</option> \
             <option value="e">E</option> \
             <option value="f">F</option> \
-            <option value="f#/gb">F&#9839;/G&#9837;</option> \
+            <option value="f#/gb">F#/Gb</option> \
             <option value="g">G</option> \
-            <option value="g#/ab">G&#9839;/A&#9837;</option> \
+            <option value="g#/ab">G#/Ab</option> \
             <option value="a">A</option> \
-            <option value="a#/bb">A&#9839;/B&#9837;</option> \
+            <option value="a#/bb">A#/Bb</option> \
             <option value="b">B</option> \
         </select> \
+        </div> \
+        <div class="col pad5"> \
         <select name="type" id="pickType"> \
             <option value="major">Major</option> \
             <option value="minor">minor</option> \
-        </select>';
+        </select> \
+        </div> \
+        </div>';
 
         this.picker.innerHTML = html;
         return this;

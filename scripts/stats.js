@@ -39,11 +39,16 @@ Stats.prototype = {
     render: function(data) {
 
         var data = data || {};
-        data.notes = data.notes || '';
-        data.chord_formula = data.chord_formula || '';
-        var html = 'Notes: ' + Util.formatNotes(data.notes).toString();
+        data.root = data.root || 'c';
+        data.type = data.type || 'major';
+
+        var notes = Musicalc.getChordNotes(data.root, data.type);
+        var chord_formula = Musicalc.getChordFormula(data.root, data.type);
+        var scale_notes = Musicalc.getScaleNotes(data.root, data.type);
+
+        var html = 'Notes: ' + Util.formatNotes(notes).toString();
         html += '<br/>';
-        html += 'Formula: ' + data.chord_formula.toString();
+        html += 'Formula: ' + chord_formula.toString();
 
         this.stats.innerHTML = html;
         return this;

@@ -4,74 +4,19 @@ html, body {
     font-family: verdana;
 }
 
-.string {
-    stroke:#000000;
-    stroke-width:2px;
+
+/*grid*/
+.row {
+    display: table;
+    width:100%;
+    table-layout: fixed;
 }
 
-.fret0 .string{
-    stroke:#FFFFFF;
+.col {
+    display: table-cell;
 }
 
-.bar {
-    stroke:#e2e2e2;
-    stroke-width:2px;
+.col.pad5 {
+    padding: 5px;
 }
-
-.note {
-    cursor: pointer;
-    stroke-width:2;
-}
-
-.note.disabled {
-    fill:#e2e2e2;
-    stroke:#e2e2e2;
-    display:none;
-}
-
-.fret0 .note {
-    fill:#FFFFFF;
-    stroke:#000000;
-}
-
-.fret0 .note.disabled {
-    stroke:#e2e2e2;
-}
-
-.note:hover {
-    fill:#FF0000;
-    stroke:#FF0000;
-}
-
-.label {
-    fill:#FFFFFF;
-}
-
-.label-fret {
-    text-anchor: end;
-    alignment-baseline: middle;
-    font-size: 12px;
-    pointer-events:none;
-    text-transform: uppercase;
-    fill:#c2c2c2;
-}
-
-.label-note {
-    text-anchor: middle;
-    alignment-baseline: middle;
-    font-size: 12px;
-    pointer-events:none;
-    text-transform: uppercase;
-}
-
-.fret0 .label-note {
-    fill:#000000;
-}
-
-.fret0 .label-note.disabled,
-.label-note.disabled {
-    fill:#CCCCCC;
-    display:none;
-}
-
 

@@ -1,0 +1,13 @@
+#picker {
+    width:320px;
+    margin:10px auto;
+}
+#picker select {
+    width:100%;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1;
+    border-radius: 0px;
+    height: 40px;
+    padding:0 10px;
+}
