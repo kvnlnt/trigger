@@ -1,4 +1,5 @@
 var Events = {
     rootChanged:'rootChanged',
-    typeChanged: 'typeChanged'
+    typeChanged: 'typeChanged',
+    playClicked: 'playClicked'
 };

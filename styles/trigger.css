@@ -15,8 +15,3 @@ html, body {
 .col {
     display: table-cell;
 }
-
-.col.pad5 {
-    padding: 5px;
-}
-

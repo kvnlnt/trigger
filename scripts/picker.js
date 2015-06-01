@@ -52,13 +52,18 @@ Picker.prototype = {
             that.broadcast();
         });
 
+        // preview button clicked
+        this.picker.querySelector("#previewChord").addEventListener('click', function(e){
+            document.body.dispatchEvent(new CustomEvent(Events.playClicked));
+        });
+
     },
 
     render: function() {
 
         var html = '\
         <div class="row"> \
-        <div class="col pad5"> \
+        <div class="col"> \
         <select name="root" id="pickRoot"> \
             <option value="c">C</option> \
             <option value="c#/db">C#/Db</option> \
@@ -74,11 +79,14 @@ Picker.prototype = {
             <option value="b">B</option> \
         </select> \
         </div> \
-        <div class="col pad5"> \
+        <div class="col"> \
         <select name="type" id="pickType"> \
             <option value="major">Major</option> \
             <option value="minor">minor</option> \
         </select> \
+        </div> \
+        <div class="col"> \
+            <button id="previewChord">&#9658;</button> \
         </div> \
         </div>';
 

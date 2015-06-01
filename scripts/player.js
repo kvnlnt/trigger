@@ -11,10 +11,22 @@ var Player = function(options){
 Player.prototype = {
 
     init: function(){
+
+        var that = this;
+
+        document.body.addEventListener(Events.playClicked, function(e) {
+            that.playFrettedNotes();
+        });
+
         return new Howl({
           urls: [this.sample],
           sprite: this.getOffsets()
         });
+
+    },
+
+    playFrettedNotes: function(){
+        console.log('play fretted notes');
     },
 
     getOffsets: function(){

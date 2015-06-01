@@ -1,13 +1,38 @@
+#pickerWrapper {
+    margin:10px 0;
+}
 #picker {
     width:320px;
-    margin:10px auto;
+    margin:0px auto;
 }
+
 #picker select {
     width:100%;
-    background: transparent;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1;
-    border-radius: 0px;
+    border-radius: 5px;
     height: 40px;
     padding:0 10px;
+    border:1px solid #a2a2a2;
+    -webkit-appearance: none;
+    background: #FFFFFF url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+") no-repeat;
+    background-size: 25px;
+    background-position: 90% 50%;
+    cursor: pointer;
+}
+
+#picker .col {
+    padding:0 5px;
+}
+
+#previewChord {
+    cursor: pointer;
+    width:100%;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 5px;
+    height: 40px;
+    padding:0 10px;
+    background-color: #FFFFFF;
+    border:1px solid #a2a2a2;
 }
