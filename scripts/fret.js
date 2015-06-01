@@ -1,4 +1,4 @@
-var Fret = function(options){
+var Fret = function(options) {
 
     var options = options || {};
     this.tuning = options.tuning || {};
@@ -9,10 +9,11 @@ var Fret = function(options){
     this.width = options.width || 300;
     this.spread = options.spread || 50;
     this.fret = new Svg({
-        tag:'g', 
+        tag: 'g',
         attrs: {
             transform: 'translate(' + this.x + ',' + this.y + ')',
-            class: "fret fret" + this.num
+            class: "fret",
+            fret: this.num
         }
     });
 
@@ -23,12 +24,12 @@ var Fret = function(options){
 
 Fret.prototype = {
 
-    init: function(){
+    init: function() {
         this.render();
         return this;
     },
 
-    el: function(){
+    el: function() {
         return this.fret;
     },
 
@@ -36,20 +37,41 @@ Fret.prototype = {
 
         // bar
         var x = this.spread / 2;
-        var bar = new Svg({tag: 'line', attrs:{
-            x1:x, x2: this.width - x, y1: this.height, y2: this.height, class:'bar bar'+this.num
-        }});
+        var bar = new Svg({
+            tag: 'line',
+            attrs: {
+                x1: x,
+                x2: this.width - x,
+                y1: this.height,
+                y2: this.height,
+                class: 'bar',
+                bar: this.num
+            }
+        });
 
         this.fret.appendChild(bar);
 
         // label 
-        var label = new Label({ x: 0, y: this.height/2, text: this.num, num: this.num, klass:'fret' });
+        var label = new Label({
+            x: 0,
+            y: this.height / 2,
+            text: this.num,
+            num: this.num,
+            klass: 'fret',
+            type: 'fret'
+        });
         this.fret.appendChild(label.el());
 
         // strings 
-        var x = this.spread / 2;    
+        var x = this.spread / 2;
         for (var t in this.tuning) {
-            var string = new String({ x1:x, x2:x, y1:0, y2: this.height, num:t });
+            var string = new String({
+                x1: x,
+                x2: x,
+                y1: 0,
+                y2: this.height,
+                num: t
+            });
             this.fret.appendChild(string.el());
             x += this.spread;
         }
@@ -58,7 +80,15 @@ Fret.prototype = {
         var x = this.spread / 2;
         for (var t in this.tuning) {
             var pitch = Musicalc.getNoteByDegreesFromNote(this.tuning[t], this.num);
-            var note = new Note({ x: x, y: this.height/2, r: this.spread/3, num: t, pitch:pitch.pitch, pitchClass:pitch.note });
+            var note = new Note({
+                x: x,
+                y: this.height / 2,
+                r: this.spread / 3,
+                num: t,
+                pitch: pitch.pitch,
+                pitchClass: pitch.note,
+                state: 'disabled'
+            });
             this.fret.appendChild(note.el());
             x += this.spread;
         }
@@ -67,12 +97,15 @@ Fret.prototype = {
         var x = this.spread / 2;
         for (var t in this.tuning) {
             var pitch = Musicalc.getNoteByDegreesFromNote(this.tuning[t], this.num);
-            var label = new NoteLabel({ 
-                x: x, 
-                y: this.height/2,
+            var label = new Label({
+                x: x,
+                y: this.height / 2,
                 text: pitch.note.split('/')[0],
                 num: t,
-                klass:'note', pitchClass:pitch.note
+                klass: 'note',
+                pitchClass: pitch.note,
+                type: 'note',
+                state: 'disabled'
             });
             this.fret.appendChild(label.el());
             x += this.spread;

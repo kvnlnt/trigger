@@ -1,4 +1,4 @@
-var Label = function(options){
+var Label = function(options) {
 
     var options = options || {};
     this.num = options.num.toString() || '';
@@ -6,11 +6,19 @@ var Label = function(options){
     this.y = options.y || 0;
     this.text = options.text.toString() || '';
     this.klass = options.klass || 'label';
-    this.label = new Svg({ tag: 'text', attrs: {
-        x: this.x,
-        y: this.y,
-        class: 'label label-' + this.klass + ' ' + this.klass + this.num
-    }});
+    this.type = options.type || 'label';
+    this.state = options.state || '';
+    this.label = new Svg({
+        tag: 'text',
+        attrs: {
+            x: this.x,
+            y: this.y,
+            class: 'label',
+            label: this.num,
+            type: this.type,
+            state: this.state
+        }
+    });
 
     return this.init();
 
@@ -18,16 +26,16 @@ var Label = function(options){
 
 Label.prototype = {
 
-    init:function(){
+    init: function() {
         this.render();
         return this;
     },
 
-    el: function(){
+    el: function() {
         return this.label;
     },
 
-    render: function(){
+    render: function() {
         this.label.innerHTML = this.text;
         return this;
     }

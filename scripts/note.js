@@ -1,4 +1,4 @@
-var Note = function(options){
+var Note = function(options) {
 
     var options = options || {};
     this.num = options.num || {};
@@ -7,13 +7,20 @@ var Note = function(options){
     this.x = options.x || {};
     this.y = options.y || {};
     this.r = options.r || 25;
-    this.note = new Svg({ tag: 'circle', attrs: {
-        cx: this.x,
-        cy: this.y,
-        r: this.r,
-        class: 'note note' + (parseInt(this.num) + 1),
-        'pitch-class': this.pitchClass
-    }});
+    this.state = options.state || '';
+    this.note = new Svg({
+        tag: 'circle',
+        attrs: {
+            cx: this.x,
+            cy: this.y,
+            r: this.r,
+            note: (parseInt(this.num) + 1),
+            class: 'note',
+            'pitch-class': this.pitchClass,
+            fretted: false,
+            state: this.state
+        }
+    });
 
     this.init();
 
@@ -21,26 +28,32 @@ var Note = function(options){
 
 Note.prototype = {
 
-    init:function(){
+    init: function() {
         this.render();
         this.registerEvents();
         return this;
     },
 
-    el: function(){
+    el: function() {
         return this.note;
     },
 
-    registerEvents: function(){
+    toggleFretting: function(el) {
+        var fretted = el.getAttribute('fretted') == 'true';
+        el.setAttribute('fretted', !fretted);
+    },
+
+    registerEvents: function() {
 
         var that = this;
-        this.note.addEventListener('click', function(){
+        this.note.addEventListener('click', function() {
+            that.toggleFretting(this);
             trigger.player.play(that.pitch);
         });
 
     },
 
-    render: function(){
+    render: function() {
         return this;
     }
 

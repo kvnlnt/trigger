@@ -2,37 +2,45 @@
     text-align:center;
 }
 
+
+/*strings*/
 .string {
     stroke:#000000;
     stroke-width:2px;
 }
 
-.fret0 .string{
+[fret="0"] .string{
     stroke:#FFFFFF;
 }
 
+/*fret misc*/
 .bar {
     stroke:#e2e2e2;
     stroke-width:2px;
 }
 
+/*notes*/
 .note {
     cursor: pointer;
     stroke-width:2;
 }
 
-.note.disabled {
+[state="disabled"]{
     fill:#e2e2e2;
     stroke:#e2e2e2;
     display:none;
 }
 
-.fret0 .note {
+[fretted="true"]{
+    fill:#FF0000;
+}
+
+[fret="0"] .note {
     fill:#FFFFFF;
     stroke:#000000;
 }
 
-.fret0 .note.disabled {
+[fret="0"] .note.disabled {
     stroke:#e2e2e2;
 }
 
@@ -41,11 +49,13 @@
     stroke:#FF0000;
 }
 
+/*labels*/
 .label {
     fill:#FFFFFF;
+    pointer-events:none;
 }
 
-.label-fret {
+.label[type="fret"] {
     text-anchor: end;
     alignment-baseline: middle;
     font-size: 12px;
@@ -54,7 +64,7 @@
     fill:#c2c2c2;
 }
 
-.label-note {
+.label[type="note"] {
     text-anchor: middle;
     alignment-baseline: middle;
     font-size: 12px;
@@ -62,11 +72,11 @@
     text-transform: uppercase;
 }
 
-.fret0 .label-note {
+[fret="0"] .label[type="note"] {
     fill:#000000;
 }
 
-.fret0 .label-note.disabled,
+[fret="0"] .label[type="note"].disabled,
 .label-note.disabled {
     fill:#CCCCCC;
     display:none;
